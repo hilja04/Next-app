@@ -31,7 +31,7 @@ export default function CategoriesPage() {
     return (
         <Container maxWidth="sm">
             <h1>Categories</h1>
-            <TextField
+            <TextField  sx={{backgroundColor:"white"}}
                 label="New Category"
                 variant="outlined"
                 fullWidth
