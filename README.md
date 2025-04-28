@@ -66,7 +66,7 @@ graph TD;
 ```
 Kaaviossa on esitetty Todo-sovelluksen hakemistorakenne, joka hyödyntää App Routerin tiedostopohjaista reititystä. ``App`` -kansio toimii pääkansiona, joka sisältää sovelluksen eri osiot kuten API-reitit ja sovelluksen sivut sekä niiden reitit. Esimerkiksi ``categories``-kansio, joka sijaitsee ``app`` -kansion sisällä, määrittää reitin ``app/categories``. Tämä reitti vie ``categories`` -kansion sisällä olevaan ``page.js``-sivuun. Kun käyttäjä painaa Todo-sovelluksessa AppBarin categories painiketta, sovellus ohjaa hänet ``app/categories`` reitille ja näyttää page.js sivun sisällön. Jokaisen app reitin sisällä on page.js tiedosto, joka on reitillä renderöitävä sivu.
 
-Alla on koodiedimerkki layout.js tiedostosta, jossa sivujen navigaatio sijaitsee. Koodi esimerkistä näkee, miten reitit lisätään AppBariin. AppBar on yksi Material UI -kirjaston komponentti:
+Alla on koodiesimerkki layout.js tiedostosta, jossa sivujen navigaatio sijaitsee. Koodiesimerkistä näkee, miten reitit lisätään AppBariin. AppBar on yksi Material UI -kirjaston komponentti:
 
 ```
 <AppBar position="sticky">
