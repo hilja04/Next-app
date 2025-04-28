@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,21 +5,25 @@ import {
   TextField, Button, Box, Card, CardContent, Typography, Container, Select, MenuItem, InputLabel, FormControl,
 } from '@mui/material';
 
-export default function TodoClient({ initialTodos }) {
-  const [todos, setTodos] = useState(initialTodos);
+export default function TodoClient() {
+  const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const response = await fetch('/api/categories');
-      const categories = await response.json();
-      setCategories(categories);
+    const fetchTodosAndCategories = async () => {
+      const todosResponse = await fetch('/api/todos');
+      const todosData = await todosResponse.json();
+      setTodos(todosData);
+
+      const categoriesResponse = await fetch('/api/categories');
+      const categoriesData = await categoriesResponse.json();
+      setCategories(categoriesData);
     };
 
-    fetchCategories();
+    fetchTodosAndCategories();
   }, []);
 
   const handleAddTodo = async () => {
@@ -88,7 +91,7 @@ export default function TodoClient({ initialTodos }) {
           <Card key={todo.id} sx={{ mb: 2, position: 'relative', p: 2 }}>
             <CardContent>
               <Typography variant="h6">{todo.text}</Typography>
-              <Typography variant="body2" >
+              <Typography variant="body2">
                 Category: {todo.category}
               </Typography>
               <Typography variant="body2" color="textSecondary">

@@ -41,8 +41,22 @@ export async function insertTodo(text, date, categoryId) {
     'INSERT INTO todos (text, date, category_id) VALUES (?, ?, ?)',
     [text, date, categoryId]
   );
-  return { id: result.lastID, text, date, categoryId };
+
+  
+  const insertedTodo = await db.get(`
+    SELECT 
+      todos.id,
+      todos.text,
+      todos.date,
+      categories.name AS category
+    FROM todos
+    LEFT JOIN categories ON todos.category_id = categories.id
+    WHERE todos.id = ?
+  `, [result.lastID]);
+
+  return insertedTodo;  
 }
+
 //Fetch all todos with category name
 export async function getTodos() {
   const db = await openDb();
