@@ -17,11 +17,11 @@ Hilja Katajamäki
 - [5 Lähteet](#lähteet)
 
 ## Johdanto
-Web-sovellusten kehityksessä on suosittua käyttää erilaisia frameworkeja eli kehyksiä. Kehykset ovat ohjelmistopohjia, joiden mukana tulee valmiita työkaluja ja rakenteita, jotka tarjoavat monia etuja ja ominaisuuksia sovellusten kehittämiseen. Tällaiset kehykset tekevät sovellusten kehittämisestä nopeampaa, tehokkaampaa ja helpompaa. Yksi suosituimmista JavaScript-pohjaisista kehyksistä on Next.js, joka rakennetaan React-kirjaston päälle.
+Web-sovellusten kehityksessä on yleistä käyttää erilaisia kehyksiä eli frameworkeja. Kehykset ovat ohjelmistopohjia, jotka tarjoavat valmiita työkaluja ja rakenteita sovellusten kehittämisen tueksi. Nämä valmiit työkalut tekevät sovellusten kehittämisestä nopeampaa, tehokkaampaa ja helpompaa. Yksi suosituimmista JavaScript-pohjaisista kehyksistä on Next.js.
 
-Next.js yhdistää Reactin ja Node.js:n, mikä mahdollistaa full-stack-kehityksen yhdessä kehitysympäristössä. Se tarjoaa laajasti eri mahdollisuuksia ja ominaisuuksia, joita ei pelkällä Reactilla pystyisi käyttämään. Sen API Routes-ominaisuuden avulla HTTP-pyyntöjen käsittely on yksinkertaista ja tehokasta. Lisäksi Next.js tukee palvelinpuolen renderöintiä (SSR) ja asiakaspuolen renderöintiä (CSR). Tätä voidaan hyödyntää suorituskyvyn ja käyttäjäkokemuksen parantamiseksi.
+Next.js rakennetaan React-kirjaston päälle ja se hyödyntää Node.js:ää suorittaakseen palvelin puolen toimintoja, mikä mahdollistaa full-stack-kehityksen yhdessä ympäristössä ([Next.js Dokumentaatio](https://nextjs.org/docs)). Se tarjoaa laajasti eri mahdollisuuksia ja ominaisuuksia, joita ei pelkällä Reactilla pystyisi käyttämään. Sen API Routes-ominaisuuden avulla HTTP-pyyntöjen käsittely on yksinkertaista ja tehokasta. Lisäksi Next.js tukee palvelinpuolen renderöintiä (SSR) ja asiakaspuolen renderöintiä (CSR). Tätä voidaan hyödyntää suorituskyvyn ja käyttäjäkokemuksen parantamiseksi.
 
-Tässä seminaarityössä tutustutaan Next.js:ään ja erityisesti sen yllä mainittuihin ominaisuuksiin. Työssä rakennetaan yksinkertainen Todo-sovellus, jossa voi luoda ja katsella todo:ita sekä kategorioita. Sovelluksessa voi myös poistaa todo:ita ja lisätä kategorian todo:ille. Yksinkertaisen sovelluksen avulla voi kokeilla ja implementoida erilaisia ominaisuuksia helposti, jonka takia tähän työhön on valittu Todo-sovellus. Sovelluksessa keskitytään erityisesti API-reititykseen ja App Routeriin. 
+Tässä seminaarityössä tutustutaan Next.js:ään ja erityisesti sen yllä mainittuihin ominaisuuksiin. Työssä rakennetaan yksinkertainen Todo-sovellus, jossa voi luoda ja katsella todoita eli tehtäviä sekä kategorioita. Sovelluksessa voi myös poistaa tehtäviä ja lisätä kategorian tehtäville. Yksinkertaisen sovelluksen avulla voi kokeilla ja implementoida erilaisia ominaisuuksia helposti, jonka takia tähän työhön on valittu Todo-sovellus. Sovelluksessa keskitytään erityisesti API-reititykseen ja App Routeriin. 
 
 Työn tavoitteena on tutustua Next.js:ään tarjoamiin mahdollisuuksiin ja oppia soveltamaan sen ominaisuuksia omassa sovelluksessa. 
 
@@ -39,7 +39,7 @@ Tekniikat:
 - CSR (Client-Side Rendering)
   
 ### App router
-App Router on Next.js:n tiedostopohjainen reititin, joka mahdollistaa sovelluksen reitityksen hallinnan ilman erillisiä reititystiedostoja.  Tämä tarkoittaa, että sovelluksen reitit määräytyvät hakemistorakenteen mukaan, mikä yksinkertaistaa koodin hallintaa ja selkeyttää reittien määrittelyn. 
+App Router on Next.js:n tiedostopohjainen reititin, joka mahdollistaa sovelluksen reitityksen hallinnan ilman erillisiä reititystiedostoja ([Next.js Dokumentaatio](https://nextjs.org/docs/app)).  Tämä tarkoittaa, että sovelluksen reitit määräytyvät hakemistorakenteen mukaan, mikä yksinkertaistaa koodin hallintaa ja selkeyttää reittien määrittelyn. 
 
 #### Hakemisto rakenne
 
@@ -64,9 +64,9 @@ graph TD;
     
     D --> D1[db.js]
 ```
-Kaaviossa on esitetty Todo-sovelluksen hakemistorakenne, joka hyödyntää App Routerin tiedostopohjaista reititystä. ``App`` -kansio toimii pääkansiona, joka sisältää sovelluksen eri osiot kuten API-reitit ja sovelluksen sivut sekä niiden reitit. Esimerkiksi ``categories``-kansio, joka sijaitsee ``app`` -kansion sisällä, määrittää reitin ``app/categories``. Tämä reitti vie ``categories`` -kansion sisällä olevaan ``page.js``-sivuun. Kun käyttäjä painaa Todo-sovelluksessa AppBarin categories painiketta, sovellus ohjaa hänet ``app/categories`` reitille ja näyttää page.js sivun sisällön. Jokaisen app reitin sisällä on page.js tiedosto, joka on reitillä renderöitävä sivu.
+Kaaviossa on esitetty Todo-sovelluksen hakemistorakenne, joka hyödyntää App Routerin tiedostopohjaista reititystä. ``App`` -kansio toimii pääkansiona, joka sisältää sovelluksen eri osiot kuten API-reitit ja sovelluksen sivut sekä niiden reitit. Esimerkiksi ``categories``-kansio, joka sijaitsee ``app``-kansion sisällä, määrittää reitin ``/categories``. Tämä reitti vie ``categories``-kansion sisällä olevaan ``page.js``-sivuun. Kun käyttäjä painaa Todo-sovelluksessa AppBarin "categories"-painiketta, sovellus ohjaa hänet ``/categories``-reitille ja näyttää ``page.js``-sivun sisällön. Jokaisen app reitin sisällä on page.js tiedosto, joka on reitillä renderöitävä sivu.
 
-Alla on koodiesimerkki layout.js tiedostosta, jossa sivujen navigaatio sijaitsee. Koodiesimerkistä näkee, miten reitit lisätään AppBariin. AppBar on yksi Material UI -kirjaston komponentti:
+Alla on koodiesimerkki ``layout.js``-tiedostosta, jossa sivujen navigaatio sijaitsee. Koodiesimerkistä näkee, miten reitit lisätään AppBariin. AppBar on yksi Material UI -kirjaston komponentti:
 
 ```
 <AppBar position="sticky">
@@ -83,9 +83,9 @@ Alla on koodiesimerkki layout.js tiedostosta, jossa sivujen navigaatio sijaitsee
 ```
 
 ### API Routes
-Sovelluksessa on käytetty Next.js:n API Routes -ominaisuutta. API Routes -ominaisuuden avulla voidaan käsitellä HTTP-pyyntöjä helposti. Tämä mahdollistaa full-stack-kehityksen, jossa kaikki sovelluksen osat sijaitsevat yhdessä ympäristössä.
+Sovelluksessa on käytetty Next.js:n API Routes -ominaisuutta. Api Routes-ominaisuus tarjoaa ratkaisun julkisen API:n luomiseen Next.js sovelluksessa ([Next.js Dokumentaatio](https://nextjs.org/docs/pages/building-your-application/routing/api-routes)). Ominaisuuden avulla voidaan käsitellä HTTP-pyyntöjä helposti. 
 
-Todo-sovelluksen API-reitit sijaitsevat ``api`` -kansion sisällä. API-reitit kuten ``api/todos`` ja ``api/categories`` ottavat vastaan clientin HTTP-pyyntöjä(GET,POST,PUT,DELETE) ja käsittelevät pyynnöt, jonka jälkeen ne lähettävät vastauksen clientille. Näiden reittien kautta asiakaspuolen komponentit voivat hakea, muokata tai poistaa tietoa. Jokaisen reitin sisällä on route.js tiedosto, jossa reitittimet sijatisevat.
+Todo-sovelluksen API-reitit sijaitsevat ``api``-kansion sisällä. API-reitit kuten ``api/todos`` ja ``api/categories`` ottavat vastaan clientin HTTP-pyyntöjä(GET,POST,PUT,DELETE) ja käsittelevät pyynnöt, jonka jälkeen ne lähettävät vastauksen clientille. Näiden reittien kautta asiakaspuolen komponentit voivat hakea, muokata tai poistaa tietoa. Jokaisen reitin sisällä on ``route.js`` tiedosto, jossa reitittimet sijatisevat.
 
 Alla on esimerkki GET categories API-reitittimestä, joka sijaitsee ``api/categories`` reitillä ``route.js``-tiedoston sisällä:
 
@@ -100,9 +100,9 @@ export async function GET() {
 ```
 Reititin ottaa HTTP-pyynnön vastaan ja sitten hakee ``getCategories`` metodin tietokannasta ja lähettää tämän jälkeen clientille vastauksena kaikki kategoriat.
 
-Sovelluksessa on myös käytetty dynaamista reititystä. Dynaamiset reitit välittävät dataa reittejä pitkin tiettyyn kohteeseen. Todo:iden poistamista varten käytetään dynaamista reittiä ``api/todos/[id]``, joka käsittelee tietyn todo:n poistamista.  Tällöin reitti ottaa polusta dynaamisen arvon ([id]) ja suorittaa DELETE operaation kyseisen id:n omistavalle todo:lle. 
+Sovelluksessa on myös käytetty dynaamista reititystä. Dynaamiset reitit välittävät dataa URL:ää pitkin. Tehtävien poistamista varten käytetään dynaamista reittiä ``api/todos/[id]``, joka käsittelee tietyn tehtävän poistamista.  Tällöin API-reititin ottaa polusta dynaamisen arvon ([id]) ja suorittaa DELETE operaation kyseisen id:n omistavalle tehtävälle. 
 
-Sovelluksessa on myös SQLite tietokanta, joka on määritelty ``lib``-kansiossa ``db.js``-tiedostossa. API-reitit hyödyntävät tietokannan toimintoja importtaamalla ne ``db.js`` -tiedostosta. Näiden toimintojen avulla API-reitit pystyvät käsittelemään tietoa helpommin ja suorittamaan tietokannan operaatioita kuten todo:iden hakemista, lisäämistä, päivittämistä ja poistamista.
+Sovelluksessa on myös SQLite tietokanta, joka on määritelty ``lib``-kansiossa ``db.js``-tiedostossa. API-reitit hyödyntävät tietokannan toimintoja importtaamalla ne ``db.js``-tiedostosta. Näiden toimintojen avulla API-reitit pystyvät käsittelemään tietoa helpommin ja suorittamaan tietokannan operaatioita kuten tehtävien hakemista, lisäämistä, päivittämistä ja poistamista.
 
 Alla on esimerkki ``db.js``-tiedoston ``getCategories`` metodista, jota käytetään GET categories API-reitittimessä:
 
@@ -116,11 +116,11 @@ export async function getCategories() {
 ### SSR ja CSR
 Server-Side Rendering (SSR) ja Client-Side Rendering (CSR) ovat kaksi erilaista tekniikkaa, joita käytetään sovelluksen datan renderöintiin. Next.js tarjoaa molemmat vaihtoehdot.
 
-Server-Side Rendering(SSR) tarkoittaa, että palvelin renderöi HTML-komponentit serverillä ja lähettää ne sitten clientille.
+Server-Side Rendering (SSR) tarkoittaa, että palvelin generoi HTML-sisällöb serverillä ja lähettää ne sitten clientille ([Mdn web docs](https://developer.mozilla.org/en-US/docs/Glossary/SSR)).
 
-Client-side Rendering(CSR) taas tarkoittaa, että komponentit renderöidään Clientin eli asiakkaan selaimessa.
+Client-side Rendering (CSR) taas tarkoittaa, että sisältö generoidaan Clientin eli asiakkaan selaimessa.
 
-Tässä Todo-sovelluksessa molempia teknologioita hyödynnetään tilanteen mukaan. Uusimmissa Next.js-versioissa tiedostot ovat oletuksena server-side komponentteja, mutta ne voidaan tehdä myös client-side komponenteiksi lisäämällä tiedoston alkuun ``"use client;"`` koodi. Vanhemmissa versioissa käytetään getServerSideProps- tai getStaticProps metodeja, jotka mahdollistavat datan hakemisen palvelimelta ennen sivun renderöintiä. Tässä työssä käytetään uudempaa versiota. 
+Tässä Todo-sovelluksessa molempia teknologioita hyödynnetään tilanteen mukaan. Uusimmissa Next.js-versioissa komponentit ovat oletuksena server-side komponentteja, mutta ne voidaan määritellä myös client-side komponenteiksi lisäämällä tiedoston alkuun ``"use client;"`` koodi ([Next.js Dokumentaatio](https://nextjs.org/docs/app/building-your-application/rendering/server-components)). 
 
 ## Arkkitehtuurikaavio
 
@@ -148,7 +148,8 @@ Opin erityisesti SSR ja CSR eroista paljon. Vaikka en päässyt syventämään S
 Next.js:n avulla pystyy kehittämään full-stack web-sovelluksia helposti. Sen käytänteet ovat järjestelmällisiä ja nopeasti ymmärrettävissä sekä tekevät sovelluksen rakentamisesta yksenkertaisempaa. Next.js:llä on laajasti eri ominaisuuksia, joita kaikkia ei tässä työssä ehditty käsittelemään. Tästä aiheesta voisi tutkia vielä esimerkiksi kuvien optimointi-ominaisuutta ja middleware-toimintoja.
 
 ## Lähteet
-- [Next.js verkkosivut](https://nextjs.org/docs/app/getting-started)
 - [mdn web docks](https://developer.mozilla.org/en-US/docs/Glossary/SSR)
+- [Next.js verkkosivut](https://nextjs.org/docs/app/getting-started)
+
 
 
