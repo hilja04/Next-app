@@ -28,10 +28,14 @@ export default function CategoriesPage() {
         setNewCategory('');
     };
 
+    const handleDeleteCategory = async (id) => {
+        await fetch(`/api/categories/${id}`, { method: 'DELETE' });
+        setCategories(categories.filter((category) => category.id !== id));
+    };
     return (
         <Container maxWidth="sm">
             <h1>Categories</h1>
-            <TextField  sx={{backgroundColor:"white"}}
+            <TextField sx={{ backgroundColor: "white" }}
                 label="New Category"
                 variant="outlined"
                 fullWidth
@@ -51,6 +55,19 @@ export default function CategoriesPage() {
                     {categories.map((category) => (
                         <ListItem key={category.id}>
                             <Typography variant="body1">{category.name}</Typography>
+                            <Button
+                                sx={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    right: 10,
+                                    transform: 'translateY(-50%)',
+                                }}
+                                variant="outlined"
+                                color="error"
+                                onClick={() => handleDeleteCategory(category.id)}
+                            >
+                                Delete
+                            </Button>
                         </ListItem>
                     ))}
                 </List>

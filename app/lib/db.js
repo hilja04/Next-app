@@ -88,3 +88,7 @@ export async function getCategories() {
   const db = await openDb();
   return await db.all('SELECT * FROM categories');
 }
+export async function deleteCategory(id) {
+  const db = await openDb();
+  await db.run('DELETE FROM categories WHERE id = ?', [id]);
+}
