@@ -1,7 +1,9 @@
- Ohjelmistokehityksen teknologiat - Seminaarityö
+Ohjelmistokehityksen teknologiat - Seminaarityö
 
 # Next.js Todo-App
 Hilja Katajamäki
+
+[Projektin Video linkki](https://haagahelia-my.sharepoint.com/:v:/g/personal/bhi033_myy_haaga-helia_fi/EfdlYGGl9DhDsHGSrgtdoLQBtu7p9MHDp5HOlfmwLInjRg?e=lXq6iV)
 
 27.04.2025
 
@@ -11,24 +13,30 @@ Hilja Katajamäki
   - [2.1 App Router](#app-router)
   - [2.2 API Routes](#api-routes)
   - [2.3 SSR ja CSR](#ssr-ja-csr)
-- [3 Arkkitehtuurikaavio](#arkkitehtuurikaavio)
-- [4 Johtopäätökset](#johtopäätökset)
-  - [4.1 Reflektointi](#reflektointi)
-- [5 Lähteet](#lähteet)
+- [3 Työn Vaiheet](#työn-vaiheet)
+  - [3.1 Sovelluksen suunnittelu ja ominaisuuksien valinta](#1-sovelluksen-suunnittelu-ja-ominaisuuksien-valinta)
+  - [3.2 Next.js -projektin luominen](#2-nextjs--projektin-luominen)
+  - [3.3 Sovelluksen lisäys GitHubiin](#3-sovelluksen-lisäys-githubiin)
+  - [3.4 Sovelluksen kehitys](#4-sovelluksen-kehitys)
+  - [3.5 Viimeistely](5-viimeistely)
+- [4 Arkkitehtuurikaavio](#arkkitehtuurikaavio)
+- [5 Johtopäätökset](#johtopäätökset)
+  - [5.1 Reflektointi](#reflektointi)
+- [6 Lähteet](#lähteet)
 
 ## Johdanto
-Web-sovellusten kehityksessä on yleistä käyttää erilaisia kehyksiä eli frameworkeja. Kehykset ovat ohjelmistopohjia, jotka tarjoavat valmiita työkaluja ja rakenteita sovellusten kehittämisen tueksi. Nämä valmiit työkalut tekevät sovellusten kehittämisestä nopeampaa, tehokkaampaa ja helpompaa. Yksi suosituimmista JavaScript-pohjaisista kehyksistä on Next.js.
+Web-sovellusten kehityksessä on yleistä käyttää erilaisia kehyksiä eli frameworkeja. Kehykset ovat ohjelmistorunkoja tai pohjia, jotka tarjoavat valmiita työkaluja ja rakenteita sovellusten kehittämisen tueksi. Nämä valmiit työkalut tekevät sovellusten kehittämisestä nopeampaa, tehokkaampaa ja helpompaa. Yksi suosituimmista JavaScript-pohjaisista kehyksistä on Next.js.
 
-Next.js rakennetaan React-kirjaston päälle ja se hyödyntää Node.js:ää suorittaakseen palvelin puolen toimintoja, mikä mahdollistaa full-stack-kehityksen yhdessä ympäristössä ([Next.js Dokumentaatio](https://nextjs.org/docs)). Se tarjoaa laajasti eri mahdollisuuksia ja ominaisuuksia, joita ei pelkällä Reactilla pystyisi käyttämään. Sen API Routes-ominaisuuden avulla HTTP-pyyntöjen käsittely on yksinkertaista ja tehokasta. Lisäksi Next.js tukee palvelinpuolen renderöintiä (SSR) ja asiakaspuolen renderöintiä (CSR). Tätä voidaan hyödyntää suorituskyvyn ja käyttäjäkokemuksen parantamiseksi.
+Next.js rakennetaan React-kirjaston päälle ja se hyödyntää Node.js:ää suorittaakseen palvelin puolen toimintoja, mikä mahdollistaa full-stack-kehityksen yhdessä ympäristössä ([Next.js Dokumentaatio](https://nextjs.org/docs)). Se tarjoaa laajasti eri mahdollisuuksia ja ominaisuuksia, joita ei pelkällä Reactilla pystyisi käyttämään. Sen API Routes -ominaisuuden avulla HTTP-pyyntöjen käsittely on yksinkertaista ja tehokasta. Lisäksi Next.js tukee palvelinpuolen renderöintiä (SSR) ja asiakaspuolen renderöintiä (CSR). Niitä voidaan hyödyntää suorituskyvyn ja käyttäjäkokemuksen parantamiseksi.
 
-Tässä seminaarityössä tutustutaan Next.js:ään ja erityisesti sen yllä mainittuihin ominaisuuksiin. Työssä rakennetaan yksinkertainen Todo-sovellus, jossa voi luoda ja katsella todoita eli tehtäviä sekä kategorioita. Sovelluksessa voi myös poistaa tehtäviä ja lisätä kategorian tehtäville. Yksinkertaisen sovelluksen avulla voi kokeilla ja implementoida erilaisia ominaisuuksia helposti, jonka takia tähän työhön on valittu Todo-sovellus. Sovelluksessa keskitytään erityisesti API-reititykseen ja App Routeriin. 
+Tässä seminaarityössä tutustutaan Next.js:ään ja sovelletaan sen ominaisuuksia. Työssä rakennetaan yksinkertainen Todo-sovellus, jossa voi luoda, katsella ja poistaa todoita eli tehtäviä sekä kategorioita. Sovelluksessa voi myös lisätä tehtävälle kategorian. Yksinkertaisen sovelluksen avulla voi kokeilla ja implementoida erilaisia ominaisuuksia helposti. Sovelluksessa keskitytään erityisesti API Routes -ominaisuuteen ja App Routeriin.
 
-Työn tavoitteena on tutustua Next.js:ään tarjoamiin mahdollisuuksiin ja oppia soveltamaan sen ominaisuuksia omassa sovelluksessa. 
+Työn tavoitteena on tutustua Next.js:n tarjoamiin mahdollisuuksiin ja oppia soveltamaan sen ominaisuuksia omassa sovelluksessa. 
 
 ## Käytetyt teknologiat ja tekniikat
 
 Teknologiat:
-- Next.js - Javascript-pohjainen kehys
+- Next.js - JavaScript-pohjainen kehys
 - SQLite - kevyt tietokanta, jota käytetään sovelluksen tietojen tallentamiseen
 - Material-UI - React-komponenttikirjasto, joka tarjoaa tyyliteltyjä käyttöliittymä komponentteja
 
@@ -39,7 +47,7 @@ Tekniikat:
 - CSR (Client-Side Rendering)
   
 ### App router
-App Router on Next.js:n tiedostopohjainen reititin, joka mahdollistaa sovelluksen reitityksen hallinnan ilman erillisiä reititystiedostoja ([Next.js Dokumentaatio](https://nextjs.org/docs/app)).  Tämä tarkoittaa, että sovelluksen reitit määräytyvät hakemistorakenteen mukaan, mikä yksinkertaistaa koodin hallintaa ja selkeyttää reittien määrittelyn. 
+App Router on Next.js:n tiedostopohjainen reititin, joka mahdollistaa sovelluksen reitityksen hallinnan ilman erillisiä reititystiedostoja ([Next.js Dokumentaatio](https://nextjs.org/docs/app)). Tämä tarkoittaa, että sovelluksen reitit määräytyvät hakemistorakenteen mukaan, mikä yksinkertaistaa koodin hallintaa ja selkeyttää reittien määrittelyn. 
 
 #### Hakemisto rakenne
 
@@ -51,20 +59,24 @@ graph TD;
     A --> D[lib/]
     A --> E[page.js]
     A --> F[layout.js]
-    
-    B --> B1[todos/]
-    B --> B2[categories/]
+   
+  B --> B1[todos/]
+  B --> B2[categories/]
 
-    B1 --> B1_1[id/]
-    B1 --> B1_2[route.js]
-    B2 --> B2_1[route.js]
-    B1_1 --> B1_1_1[route.js]
+  B1 --> B1_1[id/]
+  B1 --> B1_2[route.js]
+
+  B1_1 --> B1_1_1[route.js]
+
+  B2 --> B2_1[id/]
+  B2 --> B2_2[route.js]
+
+  B2_1 --> B2_1_1[route.js]
+  C --> C1[page.js]
     
-    C --> C1[page.js]
-    
-    D --> D1[db.js]
+  D --> D1[db.js]
 ```
-Kaaviossa on esitetty Todo-sovelluksen hakemistorakenne, joka hyödyntää App Routerin tiedostopohjaista reititystä. ``App`` -kansio toimii pääkansiona, joka sisältää sovelluksen eri osiot kuten API-reitit ja sovelluksen sivut sekä niiden reitit. Esimerkiksi ``categories``-kansio, joka sijaitsee ``app``-kansion sisällä, määrittää reitin ``/categories``. Tämä reitti vie ``categories``-kansion sisällä olevaan ``page.js``-sivuun. Kun käyttäjä painaa Todo-sovelluksessa AppBarin "categories"-painiketta, sovellus ohjaa hänet ``/categories``-reitille ja näyttää ``page.js``-sivun sisällön. Jokaisen app reitin sisällä on page.js tiedosto, joka on reitillä renderöitävä sivu.
+Kaaviossa on esitetty Todo-sovelluksen hakemistorakenne, joka hyödyntää App Routerin tiedostopohjaista reititystä. ``App``-kansio toimii pääkansiona, joka sisältää sovelluksen eri osiot kuten API-reitit ja sovelluksen sivut sekä niiden reitit. Esimerkiksi ``categories``-kansio, joka sijaitsee ``app``-kansion sisällä, määrittää reitin ``/categories``. Tämä reitti vie ``categories``-kansion sisällä olevaan ``page.js``-sivuun. Kun käyttäjä painaa Todo-sovelluksessa AppBarin "categories"-painiketta, sovellus ohjaa hänet ``/categories``-reitille ja näyttää ``page.js``-sivun sisällön. Jokaisen app -reitin sisällä on ``page.js`` tiedosto, joka on reitillä renderöitävä sivu.
 
 Alla on koodiesimerkki ``layout.js``-tiedostosta, jossa sivujen navigaatio sijaitsee. Koodiesimerkistä näkee, miten reitit lisätään AppBariin. AppBar on yksi Material UI -kirjaston komponentti:
 
@@ -83,9 +95,9 @@ Alla on koodiesimerkki ``layout.js``-tiedostosta, jossa sivujen navigaatio sijai
 ```
 
 ### API Routes
-Sovelluksessa on käytetty Next.js:n API Routes -ominaisuutta. Api Routes-ominaisuus tarjoaa ratkaisun julkisen API:n luomiseen Next.js sovelluksessa ([Next.js Dokumentaatio](https://nextjs.org/docs/pages/building-your-application/routing/api-routes)). Ominaisuuden avulla voidaan käsitellä HTTP-pyyntöjä helposti. 
+Sovelluksessa on käytetty Next.js:n API Routes -ominaisuutta. Api Routes -ominaisuus tarjoaa ratkaisun julkisen API:n luomiseen Next.js sovelluksessa ([Next.js Dokumentaatio](https://nextjs.org/docs/pages/building-your-application/routing/api-routes)). Ominaisuuden avulla voidaan käsitellä HTTP-pyyntöjä helposti. 
 
-Todo-sovelluksen API-reitit sijaitsevat ``api``-kansion sisällä. API-reitit kuten ``api/todos`` ja ``api/categories`` ottavat vastaan clientin HTTP-pyyntöjä(GET,POST,PUT,DELETE) ja käsittelevät pyynnöt, jonka jälkeen ne lähettävät vastauksen clientille. Näiden reittien kautta asiakaspuolen komponentit voivat hakea, muokata tai poistaa tietoa. Jokaisen reitin sisällä on ``route.js`` tiedosto, jossa reitittimet sijatisevat.
+Todo-sovelluksen API-reitit sijaitsevat ``api``-kansion sisällä. API-reitit kuten ``api/todos`` ja ``api/categories`` ottavat vastaan clientin HTTP-pyyntöjä (GET,POST,PUT,DELETE) ja käsittelevät pyynnöt, jonka jälkeen ne lähettävät vastauksen clientille. Näiden reittien kautta asiakaspuolen komponentit voivat hakea, muokata tai poistaa tietoa. Jokaisen reitin sisällä on ``route.js`` tiedosto, jossa reitittimet sijatisevat.
 
 Alla on esimerkki GET categories API-reitittimestä, joka sijaitsee ``api/categories`` reitillä ``route.js``-tiedoston sisällä:
 
@@ -116,11 +128,43 @@ export async function getCategories() {
 ### SSR ja CSR
 Server-Side Rendering (SSR) ja Client-Side Rendering (CSR) ovat kaksi erilaista tekniikkaa, joita käytetään sovelluksen datan renderöintiin. Next.js tarjoaa molemmat vaihtoehdot.
 
-Server-Side Rendering (SSR) tarkoittaa, että palvelin generoi HTML-sisällöb serverillä ja lähettää ne sitten clientille ([Mdn web docs](https://developer.mozilla.org/en-US/docs/Glossary/SSR)).
+Server-Side Rendering (SSR) tarkoittaa, että palvelin generoi HTML-sisällön serverillä ja lähettää sen sitten clientille ([MDN Web Docs](https://developer.mozilla.org/en-US/docs/Glossary/SSR)).
 
 Client-side Rendering (CSR) taas tarkoittaa, että sisältö generoidaan Clientin eli asiakkaan selaimessa.
 
 Tässä Todo-sovelluksessa molempia teknologioita hyödynnetään tilanteen mukaan. Uusimmissa Next.js-versioissa komponentit ovat oletuksena server-side komponentteja, mutta ne voidaan määritellä myös client-side komponenteiksi lisäämällä tiedoston alkuun ``"use client;"`` koodi ([Next.js Dokumentaatio](https://nextjs.org/docs/app/building-your-application/rendering/server-components)). 
+
+## Työn vaiheet
+Sovelluksen kehittäminen on toteutettu vaiheittain, ja alla on kuvattu tärkeimmät vaiheet ja komennot, joita käytettiin Todo-sovelluksen luomiseen.
+
+### 1 Sovelluksen suunnittelu ja ominaisuuksien valinta
+
+Ennen sovelluksen aloitusta tutkittiin Next.js:ää ja sen ominaisuuksia eri lähteistä kuten Next.js dokumentaatiosta. Tämän jälkeen alettiin suunnittelemaan sovellusta ja päätettiin sen aihe. Tähän työhön valittiin Todo-sovellus, sillä se on tuttu ja turvallinen, jolloin on helppo keskittyä Next.js-ominaisuuksien lisäämiseen. Kun aihe oli päätetty, valittiin Next.js -ominaisuudet, kuten App Router, API Routes ja SSR/CSR, jotka haluttiin lisätä tähän sovellukseen. 
+
+### 2 Next.js -projektin luominen
+
+Työn toisessa vaiheessa luotiin Next.js-projekti komentorivillä käyttäen komentoa:
+   
+``npx create-next-app@latest``
+   
+Tämä komento asentaa kaikki tarvittavat riippuvuudet ja luo pohjan sovellukselle ([Next.js Dokumentaatio](https://nextjs.org/docs/app/getting-started/installation)). Jotta Next.js:ää voi käyttää ja luominen sujuu mutkitta, omassa järjestelmässä tulee olla ladattuna Node.js. Projektin luomisen jälkeen asennettiin valitut lisäosat kuten SQLite ja Material UI:
+
+``npm install sqlite sqlite3 ``
+
+``npm install @mui/material @emotion/react @emotion/styled``
+
+### 3 Sovelluksen lisäys GitHubiin
+
+Projektin pohjan ollessa pystyssä se lisättiin GitHubiin, jotta voidaan toteuttaa versionhallintaa. Aluksi luotiin GitHub repository, ja sitten komentorivillä projektin kansiossa käytettiin seuraavia komentoja ``git init``, ``git add.``,``git commit -m ""``, ``git remote add origin <repository_url>`` ja ``git push -u origin master``. 
+
+### 4 Sovelluksen kehitys
+
+Kun kaikki riippuvuudet oltiin asennettu, aloitettiin sovelluksen kehitys. Ensiksi luotiin App Routeriin sivujen reitit ja sen jälkeen sivut. Kun sivut olivat valmiit, luotiin API Routes -reitittimet kategorioille ja tehtäville. Tämän jälkeen otettiin tietokanta käyttöön ja lisättiin se API -reitteihin. Sovelluksen kehityksen aikana seurattiin jatkuvasti, miltä web-sovellus näyttää paikallisesti selaimessa (localhost).
+
+### 5 Viimeistely
+Lopuksi testattiin sovelluksen toimivuutta selaimessa localhostissa ja varmistettiin, että kaikki toiminnot toimivat oikein. Tämän jälkeen lähetettiin valmis versio GitHubiin. Sovelluksen voi käynnistää seuraavalla komennolla:
+
+``npm run dev``
 
 ## Arkkitehtuurikaavio
 
@@ -133,23 +177,24 @@ graph TD
 
 
 ```
-Arkkitehtuurikaavio kuvaa sovelluksen rakennetta, jossa asiakaspuolen komponentin tekevät HTTP-pyyntöjä Next.js:n API Routes-reiteille. Nämä reitit käyttävät tietokannan kyselyfunktioita ja palauttavat tiedot takaisin asiakaspuolelle.
+Arkkitehtuurikaavio kuvaa sovelluksen rakennetta, jossa asiakaspuolen komponentin tekevät HTTP-pyyntöjä Next.js:n API Routes -reiteille. Nämä reitit käyttävät tietokannan kyselyfunktioita ja palauttavat tiedot takaisin asiakaspuolelle.
 
 ## Johtopäätökset
 Työn aikana huomattiin, että Next.js tarjoaa erittäin joustavan ja tehokkaan ympäristön web-sovellusten kehittämiseen. App Routerin avulla reitityksen hallinta on selkeää ja helposti ylläpidettävää. Api Routes -ominaisuus puolestaan mahdollistaa suoraviivaisen tavan käsitellä HTTP-pyyntöjä ja luoda reitittimet.
 
-Tärkeä havainto työn aikana oli myös miten SSR ja CSR eroavat toisistaan. Sovelluksessa hyödynnettään molempia renderöinti tapoja, vaikka SSR:n renderöinti Todo-sovelluksessa on vähäisempää. Tausta tutkimuksen aikana opin niiden merkityksen ja sen, kuinka SSR ja CSR voivat oikeassa käytössä tehdä sovelluksesta responsiivisemman ja tehokkaamman. 
+Tärkeä havainto työn aikana oli myös miten SSR ja CSR eroavat toisistaan. Sovelluksessa hyödynnettään molempia renderöinti tapoja, vaikka SSR:n renderöinti Todo-sovelluksessa on vähäisempää. Taustatutkimuksen aikana opin niiden merkityksen ja sen, kuinka SSR ja CSR voivat oikeassa käytössä tehdä sovelluksesta responsiivisemman ja tehokkaamman. 
 
 ### Reflektointi
-Työskentelyn aikana pääsin tutustumaan Next.js:n, johon en ennen ollut perehtynyt. Kiinnostuin erityisesti App Routerin ja Api routes -reittien käytöstä, sillä niiden käyttö on selkeää ja järjestelmällistä. Päätin lisätä sovellukseen tietokannan, koska halusin kokeilla, miten API reitit toimisivat tietokannan kanssa. Opin siis myös lisäämään tietokannan Next.js sovellukseen, joka osoittautui olemaan hyvin yksinkertaista. API-reitit toimivat hyvin tietokannan kanssa, ja opin myös, miten reitit mahdollistavat dynaamisen datan käsittelyn.
+Työskentelyn aikana pääsin tutustumaan Next.js:n, johon en ennen ollut perehtynyt. Kiinnostuin erityisesti App Routerin ja Api Routes -reittien käytöstä, sillä niiden käyttö on selkeää ja järjestelmällistä. Päätin lisätä sovellukseen tietokannan, koska halusin kokeilla, miten API reitit toimisivat tietokannan kanssa. Opin siis myös lisäämään tietokannan Next.js sovellukseen, joka osoittautui olemaan hyvin yksinkertaista. API-reitit toimivat hyvin tietokannan kanssa, ja opin myös, miten reitit mahdollistavat dynaamisen datan käsittelyn.
 
-Opin erityisesti SSR ja CSR eroista paljon. Vaikka en päässyt syventämään SSR:n mahdollisuuksia tässsä työssä, raapaisin kuitenkin sen pintaa. Päätin keskittyiä reitityksiin, sillä ne herättivät mielenkiintoni ensimmäiseksi. Luin kuitenkin paljon erilaisia materiaaleja ja katsoin esimerkkejä SSR käytöstä, joten nyt minulla on melko hyvä kuva siitä miten sitä voidaan implementoida sovelluksiin. 
+Opin erityisesti SSR ja CSR eroista paljon. Vaikka en päässyt syventämään SSR:n mahdollisuuksia tässä työssä, raapaisin kuitenkin sen pintaa. Päätin keskittyä reitityksiin, sillä ne herättivät mielenkiintoni ensimmäisenä. Luin kuitenkin paljon erilaisia materiaaleja ja katsoin esimerkkejä SSR käytöstä, joten nyt minulla on melko hyvä kuva siitä miten sitä voidaan implementoida sovelluksiin. 
 
-Next.js:n avulla pystyy kehittämään full-stack web-sovelluksia helposti. Sen käytänteet ovat järjestelmällisiä ja nopeasti ymmärrettävissä sekä tekevät sovelluksen rakentamisesta yksenkertaisempaa. Next.js:llä on laajasti eri ominaisuuksia, joita kaikkia ei tässä työssä ehditty käsittelemään. Tästä aiheesta voisi tutkia vielä esimerkiksi kuvien optimointi-ominaisuutta ja middleware-toimintoja.
+Next.js:n avulla pystyy kehittämään full-stack web-sovelluksia helposti. Sen käytännöt ovat järjestelmällisiä ja nopeasti ymmärrettävissä sekä tekevät sovelluksen rakentamisesta yksinkertaisempaa. Next.js:llä on laajasti eri ominaisuuksia, joita kaikkia ei tässä työssä ehditty käsittelemään. Tästä aiheesta voisi tutkia vielä esimerkiksi kuvien optimointi-ominaisuutta ja middleware-toimintoja.
 
 ## Lähteet
-- [mdn web docks](https://developer.mozilla.org/en-US/docs/Glossary/SSR)
+- [MDN Web Docks](https://developer.mozilla.org/en-US/docs/Glossary/SSR)
 - [Next.js verkkosivut](https://nextjs.org/docs/app/getting-started)
+- [Youtube Video](https://www.youtube.com/watch?v=O8ivm7403rk)
 
 
 
