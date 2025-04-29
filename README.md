@@ -192,9 +192,9 @@ Opin erityisesti SSR ja CSR eroista paljon. Vaikka en päässyt syventämään S
 Next.js:n avulla pystyy kehittämään full-stack web-sovelluksia helposti. Sen käytännöt ovat järjestelmällisiä ja nopeasti ymmärrettävissä sekä tekevät sovelluksen rakentamisesta yksinkertaisempaa. Next.js:llä on laajasti eri ominaisuuksia, joita kaikkia ei tässä työssä ehditty käsittelemään. Tästä aiheesta voisi tutkia vielä esimerkiksi kuvien optimointi-ominaisuutta ja middleware-toimintoja.
 
 ## Lähteet
-- [MDN Web Docks](https://developer.mozilla.org/en-US/docs/Glossary/SSR)
-- [Next.js verkkosivut](https://nextjs.org/docs/app/getting-started)
-- [Youtube Video](https://www.youtube.com/watch?v=O8ivm7403rk)
+- MDN Web Docks. Server-Side rendering (SSR). [ https://developer.mozilla.org/en-US/docs/Glossary/SSR](https://developer.mozilla.org/en-US/docs/Glossary/SSR). Luettu: 27.4.2025
+- Next.js Verkkosivut. Getting Started. [https://nextjs.org/docs/app/getting-started](https://nextjs.org/docs/app/getting-started)
+- Youtube Video. Master Next JS in easy way. [https://www.youtube.com/watch?v=O8ivm7403rk](https://www.youtube.com/watch?v=O8ivm7403rk)
 
 
 
