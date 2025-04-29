@@ -180,6 +180,9 @@ graph TD
 Arkkitehtuurikaavio kuvaa sovelluksen rakennetta, jossa asiakaspuolen komponentin tekevät HTTP-pyyntöjä Next.js:n API Routes -reiteille. Nämä reitit käyttävät tietokannan kyselyfunktioita ja palauttavat tiedot takaisin asiakaspuolelle.
 
 ## Johtopäätökset
+
+Sovellus onnistui hyvin eikä suuria haasteita syntynyt kehityksen aikana. Projektin luominen alussa tuotti pieniä vaikeuksia sillä, jos lisäsi Tailwindin Next.js projektiin se hajosi jostain syystä. Tämä ongelma ratkesi siten, että jätin Tailwindin pois projektista. Päätin käyttää tyylittelyyn tämän vuoksi Material UI-kirjastoa. Tietokannan yhdistäminen projektiin ja API-reitteihin onnistui hyvin. Sivujen luominen oli myös mutkatonta. Sovellukseen olisi voinut vielä lisätä PUT-reitittimet.
+
 Työn aikana huomattiin, että Next.js tarjoaa erittäin joustavan ja tehokkaan ympäristön web-sovellusten kehittämiseen. App Routerin avulla reitityksen hallinta on selkeää ja helposti ylläpidettävää. Api Routes -ominaisuus puolestaan mahdollistaa suoraviivaisen tavan käsitellä HTTP-pyyntöjä ja luoda reitittimet.
 
 Tärkeä havainto työn aikana oli myös miten SSR ja CSR eroavat toisistaan. Sovelluksessa hyödynnettään molempia renderöinti tapoja, vaikka SSR:n renderöinti Todo-sovelluksessa on vähäisempää. Taustatutkimuksen aikana opin niiden merkityksen ja sen, kuinka SSR ja CSR voivat oikeassa käytössä tehdä sovelluksesta responsiivisemman ja tehokkaamman. 
